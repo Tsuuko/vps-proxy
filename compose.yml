@@ -1,0 +1,21 @@
+services:
+  proxy:
+    image: ghcr.io/tarampampam/3proxy:2
+    container_name: proxy
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      PROXY_LOGIN: "${PROXY_USER}"
+      PROXY_PASSWORD: "${PROXY_PASSWORD}"
+      PROXY_PORT: "${PROXY_PORT:-3128}"
+      SOCKS_PORT: "${SOCKS_PORT:-1080}"
+      LOG_OUTPUT: "${LOG_OUTPUT:-/dev/stdout}"
+      EXTRA_CONFIG: 'logformat "G%Y-%m-%dT%H:%M:%SZ %C -> %n:%r %E out=%O in=%I ms=%D"'
+      TZ: "${TZ:-Asia/Tokyo}"
+    logging:
+      driver: json-file
+      options:
+        max-size: "1m"
+        max-file: "10"
+    network_mode: host
