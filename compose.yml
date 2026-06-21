@@ -11,7 +11,7 @@ services:
       PROXY_PORT: "${PROXY_PORT:-3128}"
       SOCKS_PORT: "${SOCKS_PORT:-1080}"
       LOG_OUTPUT: "${LOG_OUTPUT:-/dev/stdout}"
-      EXTRA_CONFIG: 'logformat "G%Y-%m-%dT%H:%M:%SZ %C -> %n:%r %E out=%O in=%I ms=%D req=\"%T\""'
+      EXTRA_CONFIG: 'logformat "G%Y-%m-%dT%H:%M:%SZ %C -> %n:%r %E out=%O in=%I ms=%D req=%T"'
       TZ: "${TZ:-Asia/Tokyo}"
     logging:
       driver: json-file
