@@ -5,6 +5,9 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    ports:
+      - "${PROXY_PORT:-3128}:${PROXY_PORT:-3128}"
+      - "${SOCKS_PORT:-1080}:${SOCKS_PORT:-1080}"
     environment:
       PROXY_LOGIN: "${PROXY_USER}"
       PROXY_PASSWORD: "${PROXY_PASSWORD}"
@@ -18,4 +21,3 @@ services:
       options:
         max-size: "1m"
         max-file: "10"
-    network_mode: host
